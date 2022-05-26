@@ -7,12 +7,6 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -25,14 +19,43 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #007A7A;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#menu{
+  color: #007A7A;
+}
+
+#login{
+  /* background-color: #B4761A; */
+  color: #007A7A;
+  outline-color: #007A7A;
+  border-color: #007A7A;
+}
+
+#register{
+  /* background-color: #B4761A; */
+  color: #007A7A;
+  outline-color: #007A7A;
+  border-color: #007A7A;
+}
+
+#edit{
+  /* background-color: #B4761A; */
+  color: #007A7A;
+  outline-color: #007A7A;
+  border-color: #007A7A;
+}
+
+/* form{
+  color: #C9B79C;
+  border-color: #C9B79C;
+}
+
+form #email{
+
+} */
+
+.TemporaryDrawer #menu{
+    background-color: #007A7A
 }
