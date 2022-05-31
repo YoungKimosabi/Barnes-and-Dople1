@@ -49,7 +49,7 @@ export default function EditForm({user={id:1}}){
                 id="first_name"
                 name="first_name"
                 fullWidth
-                sx={{mb:2, mt:2}}
+                sx={{width:"40%", ml:20, mb:2, mt:2}}
                 label="first_name"
                 placeholder="first_name"
                 value={formik.values.first_name}
@@ -61,7 +61,7 @@ export default function EditForm({user={id:1}}){
                 id="last_name"
                 name="last_name"
                 fullWidth
-                sx={{mb:2, mt:2}}
+                sx={{width:"40%", ml:20, mb:2, mt:2}}
                 label="last_name"
                 placeholder="last_name"
                 value={formik.values.last_name}
@@ -73,7 +73,7 @@ export default function EditForm({user={id:1}}){
                 id="email"
                 name="email"
                 fullWidth
-                sx={{mb:2, mt:2}}
+                sx={{width:"40%", ml:20, mb:2, mt:2}}
                 label="email"
                 placeholder="email"
                 value={formik.values.email}
@@ -85,7 +85,7 @@ export default function EditForm({user={id:1}}){
                 id="password"
                 name="password"
                 fullWidth
-                sx={{mb:2, mt:2}}
+                sx={{width:"40%", ml:20, mb:2, mt:2}}
                 label="password"
                 placeholder="password"
                 value={formik.values.password}
@@ -94,19 +94,18 @@ export default function EditForm({user={id:1}}){
                 helperText={formik.touched.password && formik.errors.password}
             />
             <TextField
-                id="img"
-                name="img"
-                fullWidth
-                sx={{mb:2, mt:2}}
-                label="img"
-                placeholder="img"
-                value={formik.values.img}
+                id="img_url"
+                name="img_url"
+                sx={{width:"40%", ml:20, mb:2, mt:2}}
+                label="img_url"
+                placeholder="img_url"
+                value={formik.values.img_url}
                 onChange={formik.handleChange}
-                error={formik.touched.img && Boolean(formik.errors.img)}
-                helperText={formik.touched.img && formik.errors.img}
+                error={formik.touched.img_url && Boolean(formik.errors.img_url)}
+                helperText={formik.touched.img_url && formik.errors.img_url}
             />
-
-            <Button id="edit" type="submit" sx={{width:"10%"}}>{user?"Edit":"View"}</Button>
+            <br></br>
+            <Button id="edit" type="submit" sx={{color: "#b4761a", borderColor: "#b4761a", ml:20, width:"10%"}}>{user?"Edit":"View"}</Button>
             {/* not sure if this is like a toggle button? need to go back and edit */}
     </form>
     )

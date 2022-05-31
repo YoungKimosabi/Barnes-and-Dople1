@@ -3,17 +3,20 @@
 }
 
 .App-logo {
+  position: top;
   height: 40vmin;
   pointer-events: none;
+  vertical-align: top;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  /* background-color: #282c34; */
+  height: 40vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -22,40 +25,62 @@
   color: #007A7A;
 }
 
+body #root{
+  width: 100vw;
+  height: 100vh;
+}
+
 #menu{
   color: #007A7A;
 }
 
 #login{
   /* background-color: #B4761A; */
-  color: #007A7A;
-  outline-color: #007A7A;
-  border-color: #007A7A;
+  color: #b4761a;
+  outline-color: #b4761a;
+  border-color: #b4761a;
 }
 
 #register{
   /* background-color: #B4761A; */
-  color: #007A7A;
-  outline-color: #007A7A;
-  border-color: #007A7A;
+  color: #b4761a;
+  outline-color: #b4761a;
+  border-color: #b4761a;
+}
+
+#registerHome{
+  /* background-color: #B4761A; */
+  color: #b4761a;
+  outline-color: #b4761a;
+  border-color: #b4761a;
+  /* width: 15%;
+  margin-left: 20; */
 }
 
 #edit{
   /* background-color: #B4761A; */
-  color: #007A7A;
-  outline-color: #007A7A;
-  border-color: #007A7A;
+  color: #b4761a;
+  outline-color: #b4761a;
+  border-color: #b4761a;
 }
 
-/* form{
-  color: #C9B79C;
-  border-color: #C9B79C;
+header.css-19z1ozs-MuiPaper-root-MuiAppBar-root{
+  background-color: #007A7A;
 }
 
-form #email{
+header.css-1191obr-MuiPaper-root-MuiAppBar-root{
+  background-color: #007a7a;
+}
 
-} */
+.css-e53awj-MuiStack-root{
 
-.TemporaryDrawer #menu{
-    background-color: #007A7A
+
+}
+
+main.css-zxdg2z{
+  padding-left: 2%;
+}
+
+main.MuiBox-root.css-zxdg2z{
+  padding: 0px;
 }

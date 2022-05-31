@@ -1,12 +1,12 @@
-// import {create} from "apisauce";
-// import base64 from "base-64";
+import {create} from "apisauce";
 
-// const apiClient = (cancelToken, email, password) =>create({
-//     baseURL: window.location.host === '127.0.0.1' || 'localhost' ? "127.0.0.1:5000": '',
-//     headers:{
-//         Authorization:"Bearer "+token
-//     },
-//     cancelToken
-// })
 
-// export default apiClient
+const apiClientTokenAuth = (token, cancelToken) =>create({
+    baseURL: "http://cae-bootstore.herokuapp.com/",
+    headers:{
+        Authorization:"Bearer "+token
+    },
+    cancelToken
+})
+
+export default apiClientTokenAuth

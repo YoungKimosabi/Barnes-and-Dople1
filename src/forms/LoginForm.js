@@ -34,7 +34,7 @@ export default function LoginForm(){
             id="email"
             name="email"
             fullWidth
-            sx={{mb:2, mt:2}}
+            sx={{width:"55%", ml:20, mb:2, mt:2}}
             label="email"
             placeholder="email"
             value={formik.values.email}
@@ -45,8 +45,9 @@ export default function LoginForm(){
         <TextField
             id="password"
             name="password"
+            type="password"
             fullWidth
-            sx={{mb:2}}
+            sx={{outlineColor:"#C9B79C", borderColor:"#C9B79C", placeholder: "#C9B79C", width:"55%", ml:20, mb:2}}
             label="password"
             placeholder="password"
             value={formik.values.password}
@@ -54,7 +55,8 @@ export default function LoginForm(){
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
         />
-        <Button id="login" type="submit" sx={{width:"10%"}}>{"Login"}</Button>
+        <br></br>
+        <Button id="login" type="submit" sx={{color: "#b4761a", borderColor: "#b4761a", ml:20, mb:2, width:"15%"}}>{"Login"}</Button>
     </form>
     )
 }
