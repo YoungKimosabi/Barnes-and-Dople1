@@ -4,30 +4,32 @@
 
 .App-logo {
   position: top;
-  height: 40vmin;
+  height: 20vmin;
   pointer-events: none;
   vertical-align: top;
 }
 
 .App-header {
-  /* background-color: #282c34; */
-  height: 40vh;
+  background-color: white;
+  height: 20vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   font-size: calc(10px + 2vmin);
-  color: white;
+  /* color: white; */
 }
 
 .App-link {
   color: #007A7A;
 }
 
-body #root{
+#root{
   width: 100vw;
   height: 100vh;
+  display: flex;
+  justify-content: center;
 }
 
 #menu{
@@ -64,23 +66,70 @@ body #root{
   border-color: #b4761a;
 }
 
+/* top bar when closed */
 header.css-19z1ozs-MuiPaper-root-MuiAppBar-root{
   background-color: #007A7A;
 }
 
+/* top bar when expanded */
 header.css-1191obr-MuiPaper-root-MuiAppBar-root{
   background-color: #007a7a;
 }
 
-.css-e53awj-MuiStack-root{
-
-
-}
-
-main.css-zxdg2z{
+/* main.css-zxdg2z{
   padding-left: 2%;
+} */
+
+/* main.MuiBox-root.css-zxdg2z{
+  padding: 0px;
+} */
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-main.MuiBox-root.css-zxdg2z{
-  padding: 0px;
+#imageGrid{
+  align-self: center;
+  grid-template-columns: repeat(3, 1fr);
 }
+
+header.css-ciy9n4-MuiPaper-root-MuiAppBar-root{
+  background-color: #007A7A;
+  opacity: .5;
+}
+
+header.css-jzk4qw-MuiPaper-root-MuiAppBar-root{
+  background-color: #007a7a;
+  opacity: .5;
+}
+
+.css-1f2xuhi-MuiDrawer-docked .MuiDrawer-paper{
+  background-color: #007A7A;
+  color: white;
+  
+}
+
+.css-i4bv87-MuiSvgIcon-root{
+  color: white;
+}
+
+.css-1crxm5-MuiImageList-root{
+  display: flex;
+  justify-content: center;
+}
+
+.flexgrow-1{
+  flex-grow:1;
+}
+
+.MuiImageList-root{
+  grid-template-columns: 1fr, 1fr, 1fr;
+}
+
+.css-1ud1glf{
+  height: 80px;
+}
+
+

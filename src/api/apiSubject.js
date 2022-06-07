@@ -1,4 +1,4 @@
-// // do we need this for the nook?
+// do we need this for the nook?
 import apiClientNoAuth from './clientNoAuth'
 import apiClientTokenAuth from './clientTokenAuth'
 
@@ -20,24 +20,24 @@ const get = async (cancelToken) =>{
     }
 }
 
-const post = async (token, subName, cancelToken) =>{
-    const response = await apiClientTokenAuth(token, cancelToken).post(endpoint, {name:subName})
-    return response.ok
-}
+// const post = async (token, subName, cancelToken) =>{
+//     const response = await apiClientTokenAuth(token, cancelToken).post(endpoint, {name:subName})
+//     return response.ok
+// }
 
-const put = async (token, id, subName, cancelToken)=>{
-    const response = await apiClientTokenAuth(token, cancelToken).put(endpoint+'/'+id, {name:subName})
-    return response.ok
-}
+// const put = async (token, id, subName, cancelToken)=>{
+//     const response = await apiClientTokenAuth(token, cancelToken).put(endpoint+'/'+id, {name:subName})
+//     return response.ok
+// }
 
-const del = async(token, id, cancelToken)=>{
-    const response = await apiClientTokenAuth(token, cancelToken).del(endpoint+'/'+id)
-    return response.ok
-}
+// const del = async(token, id, cancelToken)=>{
+//     const response = await apiClientTokenAuth(token, cancelToken).del(endpoint+'/'+id)
+//     return response.ok
+// }
 
 export default {
     get,
-    post, 
-    put,
-    del
+    // post, 
+    // put,
+    // del
 }
