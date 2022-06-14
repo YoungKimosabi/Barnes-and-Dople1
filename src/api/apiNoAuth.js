@@ -18,4 +18,4 @@ export const postUser = async (data, cancelToken) => {
         error,
         user
     }
-};
+}; 

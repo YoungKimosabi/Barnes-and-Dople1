@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import * as Yup from "yup";
 import { useFormik } from 'formik';
 import Button from '../components/Button';
 import TextField from '@mui/material/TextField';
-// import { FormControl, InputLabel, Select } from '@mui/material';
+import useCreateUser from '../hooks/useCreateUser';
+
 
 //Defining our yup validation
 const FormSchema=Yup.object(
@@ -16,25 +17,35 @@ const FormSchema=Yup.object(
     }
 )
 
-const initialValues={
-    first_name:'',
-    last_name:'',
-    email:'',
-    password:'',
-    img_url:''
-}
+export default function RegisterForm({ user }){
+    const[newUser, setNewUser] = useState({})
+    const[setError] = useState('')
 
-const handleSubmit=(values)=>{
-    console.log(values)
-}
 
-export default function RegisterForm(){
+    useCreateUser(newUser, setError)
 
+
+    const initialValues={
+        email:user?.email ?? '',
+        first_name:user?.first_name ?? '',
+        last_name:user?.last_name ?? '',
+        password:user?.password ?? ''
+    }
+
+    const handleSubmit=(values, resetForm)=>{
+ 
+        setNewUser(values)
+        console.log(values)
+        resetForm(initialValues)
+    }
+  
     const formik = useFormik({
         initialValues:initialValues,
         validationSchema:FormSchema,
-        onSubmit:(values)=>{handleSubmit(values)}
+        onSubmit:(values, {resetForm})=>{handleSubmit(values, resetForm)},
+        enableReinitialize:true
     })
+
     return(
     <form onSubmit={formik.handleSubmit}>
         <TextField
@@ -86,45 +97,8 @@ export default function RegisterForm(){
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
         />
-        {/* optional img url for avatar */}
-        <TextField
-            id="img_url"
-            name="img_url"
-            fullWidth
-            sx={{width:"40%", ml:20, mb:2, mt:2}}
-            label="img_url"
-            placeholder="img_url"
-            value={formik.values.img_url}
-            onChange={formik.handleChange}
-            error={formik.touched.img_url && Boolean(formik.errors.img_url)}
-            helperText={formik.touched.img_url && formik.errors.img_url}
-        />
         <br></br>
         <Button id="register" type="submit" sx={{color: "#b4761a", borderColor: "#b4761a", ml:20, width:"10%"}}>{"Register"}</Button>
-
-        {/* <FormControl fullWidth>
-            <InputLabel id="category-label-id">Category</InputLabel>
-            <Select
-                labelId="category-label-id"
-                id="category-id"
-                value={formik.values.category_id}
-                name="Category_id"
-                placeholder="Category"
-                label="Category"
-                onChange={formik.handleChange}
-                error={formik.touched.category_id && Boolean(formik.errors.category_id)}
-            >
-                    <MenuItem value=""><em>None</em></MenuItem>
-
-                {categories.map((category)=>(
-                    <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>
-                )
-                )}
-                </Select>
-                <FormHelperText>{formik.touched.category_id && formik.errors.category_id}</FormHelperText>
-        // </FormControl> */}
-        {/* <Button type="submit" sx={{width:"100%"}}>{item?"Edit Item":"Create Item"}</Button> */}
-
     </form>
     )
 }

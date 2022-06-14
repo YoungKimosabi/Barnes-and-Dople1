@@ -4,22 +4,25 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import CssBaseline from '@mui/material/CssBaseline';
-// import CustomThemeProvider from './context/ThemeContext';
-// import AppContextProvider from './context/AppContext';
-import { ThemeProvider } from '@mui/material/styles';
+import CustomThemeProvider from './context/ThemeContext';
+import AppContextProvider from './context/AppContext';
+// import { ThemeProvider } from '@mui/material/styles';
 import primaryTheme from './themes/primaryTheme';
+import {BrowserRouter} from 'react-router-dom';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <React.StrictMode>
-    <ThemeProvider theme={primaryTheme}>
-      {/* <AppContextProvider> */}
-      <CssBaseline/>
-      <App/>
-      {/* </AppContextProvider> */}
-    </ThemeProvider>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <BrowserRouter>
+      <CustomThemeProvider theme={primaryTheme}>
+        <AppContextProvider>
+        <CssBaseline/>
+        <App/>
+        </AppContextProvider>
+      </CustomThemeProvider>
+    </BrowserRouter>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

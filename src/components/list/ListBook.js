@@ -3,6 +3,9 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
+
 
 const Book = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'light' ? '#C9B79C' : '#fff',
@@ -12,29 +15,46 @@ const Book = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function ListBook() {
+export default function ListBook(books) {
   return (
     <>
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2} sx={{m:1, pr:2, borderRadius:1, alignItems:"stretch"}}>
-        <Grid book md={4} sm={6} xs={12}>
-          <Book>
-              {/*something to show book cover*/}
-          </Book>
-        </Grid>
-        <Grid book md={3} s={6} xs={12}>
-          <Book>
-              {/* cartCard.js or something equivalent to show book info nicely...*/}
-          </Book>
-        </Grid>
-        <Grid book md={2} s={6} xs={12}>
-          <Book>C</Book>
-        </Grid>
-        <Grid book md={3} s={6} xs={12}>
-          <Book>D</Book>
-        </Grid>
+    <Box display='flex' width='50vw' margin='auto'>
+      <Grid item={true} sx={{m:1, pr:0, border: '.1px solid #C9B79C', borderRadius:1}}>
+        <Grid item={true} sm={12} xs={12} md={12}>
+        {books.map((book) => (
+          <Book sx={{display:"flex",  flexDirection:"row", alignItems:"center"}}>
+            <Avatar alt={book.title} variant="rounded" src={book.img} sx={{height:'100%', width:'100%', marginLeft:'15%'}}/>
+          <Grid item={true} sm={12} xs={12} md={12} sx={{ml:2}}>
+                <Typography variant="subtitle1"> 
+                  <strong>Title:</strong>
+                </Typography>
+                <Typography variant="body1"> 
+                  {book.title}
+                </Typography>
+                <Typography variant="subtitle1"> 
+                  <strong>Author:</strong>
+                </Typography>
+                <Typography variant="body1"> 
+                  {book.author}
+                </Typography>
+                <Typography variant="subtitle1"> 
+                  <strong>Description:</strong>
+                </Typography>
+                <Typography variant="body1"> 
+                  {book.desc}
+                </Typography>
+                <Typography variant="subtitle1"> 
+                  <strong>Subject:</strong>
+                </Typography>
+                <Typography variant="body1"> 
+                  {book.subject}
+                </Typography>
+            </Grid>
+            </Book>
+          ))}
+        </Grid>  
       </Grid>
     </Box>
-    </>
-  );
+    </>     
+  )
 }

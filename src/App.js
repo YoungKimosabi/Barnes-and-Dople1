@@ -1,63 +1,53 @@
 import logo from './logo_transp.png';
 import './App.css';
-import Button from './components/Button';
-// import Error from './components/Error';
-import { getUser } from './api/apiBasicAuth';
-import { CancelToken } from 'apisauce';
-// import LoginForm from './forms/LoginForm';
-// import EditForm from './forms/EditForm';
-// import RegisterForm from './forms/RegisterForm';
-// import apiSubject from './api/apiSubject';
-// import apiBook from './api/apiBook';
-// import theme from './themes/primaryTheme';
-// import clientBasicAuth from './api/clientBasicAuth';
-// import clientNoAuth from './api/clientNoAuth';
-// import clientTokenAuth from './api/clientTokenAuth';
-// import Avatar from './components/Avatar';
-// import SubjectBar from './components/SubjectBar';
 // import SpeedDial from './components/SpeedDial';
-// import Select from './components/SelectSubject';
 import NewNav from './components/NewNav';
-// import SelectBook from './components/SelectBook';
-// import ListBook from './components/list/ListBook';
 import OneBook from './components/OneBook';
-import UserList from './components/list/UserList';
 import AllBooks from './components/AllBooks';
+import {Route, Routes} from 'react-router-dom'
+import React, {useContext} from 'react'
+import {AppContext} from './context/AppContext';
+import LoginView from './views/LoginView'
+import LogoutView from './views/LogoutView'
+import ListPageView from './views/ListPageView'
+import RegisterView from './views/RegisterView'
+import EditProfileView from './views/EditProfileView'
+import Box from '@mui/material/Box'
+import {useNavigate} from 'react-router-dom'
 
-const my_token = "bT_zUtIDQJ9qC_0SjYQ1Uu-N8pE9nTbkBWwAL0xWe2E"
-
-const handleAPITest = async (email, password)=>{
-  const source = CancelToken.source()
-  const response_object = await getUser(email, password, source.token);
-  // console.log(response_object)
-  // const response_object = await apiBook.del(my_token, 6, source.token);
-  console.log(response_object)
-}
-
-function App(theme) {
+function App() {
+  const navigate = useNavigate();
+  const {user} = useContext(AppContext)
   return(
-    <div>
+    <>
       <NewNav>
-        {/* <Button color="success" onClick={handleAPITest}>Test API Call</Button> */}
+        <Box sx={{minHeight:'90vh'}}>
+          <div onClick={()=>navigate('/')}>
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo"/>
+          </header>
+            <div display="flex"></div>
+            <p></p>
+            <a
+              className="App-link"
+              href="https://reactjs.org"
+              target="_blank"
+              rel="noopener noreferrer">
+            </a>    
+          </div>
+          <Routes>
+            <Route path="/" element={<AllBooks/>}/>
+            <Route path="/list" element={<ListPageView/>}/>
+            <Route path="/search" element={<AllBooks/>}/>
+            <Route path="/search/:id" element={<OneBook/>}/>
+            <Route path="/login" element={<LoginView/>}/>
+            <Route path="/logout" element={<LogoutView/>}/>
+            <Route path="/register" element={<RegisterView/>}/>
+            <Route path="/editprofile" element={<EditProfileView/>}/>
+          </Routes>
+        </Box>
       </NewNav>
-      
-      <div>
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
-          <div display="flex"></div>
-          <p></p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer">
-          </a>    
-      </div>
-      {/* <OneBook></OneBook> */}
-      {/* <AllBooks></AllBooks> */}
-      {/* <UserList></UserList> */}
-    </div>
+    </>
   );
 }
 

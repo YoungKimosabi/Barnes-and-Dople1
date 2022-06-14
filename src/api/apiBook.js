@@ -20,41 +20,24 @@ const get = async (cancelToken) =>{
     }
 }
 
-const getBySub= async (id, cancelToken) =>{
+const getBook = async (id, cancelToken) =>{
     let error;
-    let books;
+    let book;
 
-    const response = await apiClientTokenAuth(cancelToken).get(endpoint+'/subject/'+id)
+    const response = await apiClientTokenAuth(cancelToken).get(endpoint+'/'+id);
     if (response.ok){
-        books=response.data.books
+        book=response.data
     }else{
         error="An unexpected error has occurred. Please try again later."
     }
     return{
         error,
-        books
+        book
     }
 }
-//don't need these for Kev's API
-// const post = async(token, data, cancelToken)=>{
-//     const response = await apiClientTokenAuth(token, cancelToken).post(endpoint, data)
-//     return response.ok
-// }
 
-// const put = async(token, id, data, cancelToken)=>{
-//     const response = await apiClientTokenAuth(token, cancelToken).put(endpoint+'/'+id, data)
-//     return response.ok
-// }
-
-// const del = async(token, id, cancelToken)=>{
-//     const response = await apiClientTokenAuth(token, cancelToken).delete(endpoint+'/'+id)
-//     return response.ok
-// }
-
-export default {
+const apiClient={
     get,
-    getBySub,
-    // post,
-    // put,
-    // del
+    getBook,
 }
+export default apiClient

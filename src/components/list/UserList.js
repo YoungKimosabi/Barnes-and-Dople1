@@ -1,63 +1,70 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
+import React, {useContext} from 'react';
+import {AppContext} from '../../context/AppContext';
 import Typography from '@mui/material/Typography';
-import AddRemoveBook from './AddRemoveBook';
-
 import Avatar from '@mui/material/Avatar';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import { styled } from '@mui/material/styles';
 
 
-//{book} will eventually be passed into UserList()?
-export default function UserList() { 
+const Book = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'light' ? '#C9B79C' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
+export default function UserList() {
+  const {list, addToList, removeFromList, setAlert}=useContext(AppContext)
+
+  const handleRemoveFromList=(book)=>{
+    removeFromList(book)
+    setAlert(`You have removed ${book.title} from your reading list`)
+  }
+
   return (
-  
-    <Card sx={{height:"100%", display:"flex", flexWrap: "wrap"}}>
-    {listData.map((book) => (
-        <CardContent sx={{display: "inline-block", flex:"1 0 21%", alignItems: "flex-start", justifyContent: "center"}} key={book.title}>
-          <Typography variant="h5" gutterBottom>
-            {book.title}
-          </Typography>
-          {/* <Typography variant="body2" color="text.secondary">
-            {book.desc}
-          </Typography> */}
-          <Typography variant="h6" color="text.secondary">
-            {book.author}
-          </Typography>
-          <Avatar alt={book.title} sx={{height:'20%', width:'40%'}} variant="rounded" src={book.img}/>
-          <CardActions>
-            <AddRemoveBook book={book} />
-          </CardActions>
-      </CardContent>
-    )
-  )
+  <>
+    <Box display='flex' width='50vw' margin='auto'>
+    <Grid item={true} sx={{m:1, pr:0, borderRadius:1}}>
+      <Grid item={true} sm={12} xs={12} md={12}>
+        {list.map((book) => (
+        <Book sx={{display:"flex",  flexDirection:"row", justifyContent:"space-around", alignItems:"center"}}>
+          <Avatar alt={book.title} sx={{height:'30%', width:'30%', marginLeft:'10%'}} variant="rounded" src={book.img}/>
+        <Grid item={true} sm={12} xs={12} md={12} sx={{ml:2}}>
+              <Typography variant="subtitle1"> 
+                <strong>Title:</strong>
+              </Typography>
+              <Typography variant="body1"> 
+                {book.title}
+              </Typography>
+              <Typography variant="subtitle1"> 
+                <strong>Author:</strong>
+              </Typography>
+              <Typography variant="body1"> 
+                {book.author}
+              </Typography>
+              <Typography variant="subtitle1"> 
+                <strong>Description:</strong>
+              </Typography>
+              <Typography variant="body1"> 
+                {book.desc}
+              </Typography>
+              <Typography variant="subtitle1"> 
+                <strong>Subject:</strong>
+              </Typography>
+              <Typography variant="body1"> 
+                {book.subject}
+              </Typography>          
+        </Grid>
+        <RemoveCircleIcon sx={{justifyContent:'flex-end', alignItems:'flex-end'}} onClick={()=>{handleRemoveFromList(book)}}></RemoveCircleIcon>
+      </Book>
+      ))}
+    </Grid>
+  </Grid>
+  </Box>
+  </>
+  );
 }
-    </Card>
-
-)};
-
-const book1 = {
-  "id": 1,
-  "img": 'https://images-na.ssl-images-amazon.com/images/I/713O7XaEFLL.jpg',
-  "title": 'How Music Works',
-  "author": 'David Byrne'
-};
-const book2 = {
-  "id": 2,
-  "img": 'https://images-na.ssl-images-amazon.com/images/I/41wI53OEpCL._SX332_BO1,204,203,200_.jpg',
-  "title": 'Thinking Fast and Slow',
-  "author": 'Daniel Kahneman'
-};
-const book3={
-  "id": 3,
-  "img": 'https://images-na.ssl-images-amazon.com/images/I/41MCjKLqN9L._SY291_BO1,204,203,200_QL40_FMwebp_.jpg',
-  "title": 'Anna Karenina',
-  "author": 'Leo Tolstoy'
-};
-
-const listData = [book1, book2, book3]
-
-
-
-

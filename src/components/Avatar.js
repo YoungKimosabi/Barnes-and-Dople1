@@ -1,6 +1,7 @@
-import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
+import React, {useContext} from 'react';
+import { AppContext } from '../context/AppContext';
 
 function stringToColor(string) {
   let length = string.length;
@@ -29,9 +30,12 @@ function stringAvatar(name) {
 }
 
 export default function BackgroundLetterAvatars() {
+  const {user, setUser} = useContext(AppContext);
+
   return (
     <Stack direction="row" spacing={2}>
-      <Avatar {...stringAvatar('Sabrina Jurlina')} />
+      
+      <Avatar {...stringAvatar(user?.token?`${user.first_name} ${user.last_name}`:'? ?')} />
       {/* <Avatar {...stringAvatar('Jed Watson')} />
       <Avatar {...stringAvatar('Tim Neutkens')} /> */}
     </Stack>

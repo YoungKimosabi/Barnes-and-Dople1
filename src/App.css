@@ -76,14 +76,6 @@ header.css-1191obr-MuiPaper-root-MuiAppBar-root{
   background-color: #007a7a;
 }
 
-/* main.css-zxdg2z{
-  padding-left: 2%;
-} */
-
-/* main.MuiBox-root.css-zxdg2z{
-  padding: 0px;
-} */
-
 form{
   display: flex;
   flex-direction: column;
@@ -124,9 +116,6 @@ header.css-jzk4qw-MuiPaper-root-MuiAppBar-root{
   flex-grow:1;
 }
 
-.MuiImageList-root{
-  grid-template-columns: 1fr, 1fr, 1fr;
-}
 
 .css-1ud1glf{
   height: 80px;

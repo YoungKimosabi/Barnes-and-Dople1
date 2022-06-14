@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useContext} from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -16,15 +16,21 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import CheckIcon from '@mui/icons-material/Check';
 import SummarizeOutlinedIcon from '@mui/icons-material/SummarizeOutlined';
-import RateReviewOutlinedIcon from '@mui/icons-material/RateReviewOutlined';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import Avatar from './Avatar';
+import Tooltip from '@mui/material/Tooltip';
+import Menu from '@mui/material/Menu';
+import {AppContext} from '../context/AppContext';
+import MenuItem from '@mui/material/MenuItem';
+import {Link} from 'react-router-dom';
+import LoginIcon from '@mui/icons-material/Login';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+
 
 const drawerWidth = 240;
+
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
@@ -69,11 +75,15 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
   justifyContent: 'flex-end',
+  opacity: .7
 }));
 
-export default function PersistentDrawerLeft() {
+
+export default function PersistentDrawerLeft({children}) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const {user} = useContext(AppContext)
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -83,8 +93,18 @@ export default function PersistentDrawerLeft() {
     setOpen(false);
   };
 
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = (event) => {
+    setAnchorElUser(null);
+  };
+
+
   return (
-    <Box className = "flexgrow-1" sx={{ display: 'flex', opacity:.75}}>
+    <>
+    <Box className = "flexgrow-1" sx={{ display: 'flex'}}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar sx={{flexGrow:1}}>
@@ -99,7 +119,70 @@ export default function PersistentDrawerLeft() {
           </IconButton>
           <Typography fontSize="small" variant="h6" sx={{flexGrow:1}} noWrap component="div">
           </Typography>
-          <Avatar></Avatar>
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0}}>
+                <Avatar></Avatar>
+              </IconButton>
+            </Tooltip>
+            
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {user?.token ?(
+                [
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="left">
+                    <Link to='/logout'  style={{textDecoration:'none', color:'black', fontSize:'smaller'}}>
+                      Logout
+                    </Link>
+                  </Typography>
+                </MenuItem>,
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="left">
+                    <Link to='/editprofile' style={{textDecoration:'none', color:'black', fontSize:'smaller'}}>
+                      Edit Profile
+                    </Link>
+                  </Typography>
+                </MenuItem>
+                ]
+              )              
+              :
+              (
+               [ 
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">
+                    <Link to='/login' style={{textDecoration:'none', color:'black'}}>
+                      Login
+                    </Link>
+                    </Typography>
+                </MenuItem>,
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">
+                    <Link to='/register' style={{textDecoration:'none', color:'black'}}>
+                      Register
+                    </Link>
+                  </Typography>
+                </MenuItem>
+               ]
+              ) 
+            }
+            </Menu>
+            
+          </Box>
         </Toolbar> 
       </AppBar>
       <Drawer
@@ -121,61 +204,84 @@ export default function PersistentDrawerLeft() {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
-            <ListItem fontSize="small" disablePadding>
+          <List>
+          {user?.token?(
+          [
+            <ListItem key={1} fontSize="small" disablePadding>
               <ListItemButton>
-                <ListItemIcon><FavoriteBorderIcon/>
-                </ListItemIcon>
-                <ListItemText>Favorites</ListItemText>
+                  <ListItemIcon>
+                    <MenuBookIcon/>
+                  </ListItemIcon>
+                  <Link to='/search' style={{textDecoration:"none", color:"white"}}>
+                    <ListItemText>All Books</ListItemText>
+                  </Link>
               </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding>
+            </ListItem>,
+            <ListItem key={1} fontSize="small" disablePadding>
               <ListItemButton>
-                <ListItemIcon><SummarizeOutlinedIcon/>
-                </ListItemIcon>
-                <ListItemText>Up Next</ListItemText>
+                  <ListItemIcon>
+                    <SummarizeOutlinedIcon/>
+                  </ListItemIcon>
+                  <Link to='/list' style={{textDecoration:"none", color:"white"}}>
+                    <ListItemText>My Reading List</ListItemText>
+                  </Link>
               </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon><CheckIcon/>
-                </ListItemIcon>
-                <ListItemText>Read</ListItemText>
-              </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon><RateReviewOutlinedIcon/>
-                </ListItemIcon>
-                <ListItemText>Reviews</ListItemText>
-              </ListItemButton>
-            </ListItem>
-            <Divider/>
-            <ListItem disablePadding>
+            </ListItem>,
+            <ListItem key={2} disablePadding>
               <ListItemButton>
                 <ListItemIcon><ExitToAppOutlinedIcon/>
                 </ListItemIcon>
-                <ListItemText>Logout</ListItemText>
+                <Link to='/logout' style={{textDecoration:"none", color:"white"}}>
+                  <ListItemText>Logout</ListItemText>
+                </Link>
               </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding>
+            </ListItem>,
+            <ListItem key={3} disablePadding>
               <ListItemButton>
                 <ListItemIcon><EditOutlinedIcon/>
                 </ListItemIcon>
-                <ListItemText>Edit</ListItemText>
+                <Link to='/editprofile' style={{textDecoration:"none", color:"white"}}>
+                  <ListItemText>Edit Profile</ListItemText>
+                </Link>
               </ListItemButton>
             </ListItem>
-        </List>
+          ].map(x=>x)
+          )
+            :(
+              [
+            <ListItem key={1} disablePadding>
+              <ListItemButton>
+                <ListItemIcon><LoginIcon/>
+                </ListItemIcon>
+                <Link to='/login' style={{textDecoration:"none", color:"white"}}>
+                  <ListItemText>Login</ListItemText>
+                </Link>
+              </ListItemButton>
+            </ListItem>,
+            <ListItem key={2} disablePadding>
+              <ListItemButton>
+                <ListItemIcon><EditOutlinedIcon/>
+                </ListItemIcon>
+                <Link to='/register' style={{textDecoration:"none", color:"white"}}>
+                  <ListItemText>Register</ListItemText>
+                </Link>
+              </ListItemButton>
+            </ListItem>
+            ].map(x=>x)
+            )
+          }
+            </List>        
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-        <Typography paragraph>
+        {children}
+        {/* {<Typography paragraph>
           
         </Typography>
         <Typography paragraph>
           
-        </Typography>
+        </Typography>} */}
       </Main>
     </Box>
-  );
-}
+    </>
+)}
