@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import apiBook from '../api/apiBook';
 import {CancelToken} from 'apisauce';
 
-export default function useBooks(subject=null){ //do i need the null parameter?
+export default function useBooks(subject=null){ 
     const [books, setBooks] = useState({})
 
     useEffect(
@@ -19,7 +19,7 @@ export default function useBooks(subject=null){ //do i need the null parameter?
                     setBooks(response)})()
             return ()=>{source.cancel()}
         },
-        [subject] //want to refresh the subjects every time the user changes what they want to look at
+        [subject] 
     )
     return books
 }

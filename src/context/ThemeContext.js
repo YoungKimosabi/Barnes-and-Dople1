@@ -26,7 +26,7 @@ const CustomThemeProvider = ({children})=>{
     }
 
     return(
-        //equal to the dictionary of values we just created above
+        //equal to the dictionary of values that were created above
         <ThemeContext.Provider value={values}>
             <ThemeProvider theme={theme}>
                 {children}

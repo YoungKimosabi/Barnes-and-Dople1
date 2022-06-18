@@ -7,7 +7,7 @@ const listActions = {
 function listReducer(list=[], {type, book}){
     switch(type){
         case listActions.addToList:
-            return [...list, book]; //we do this (or copy the cart) bc we cannot cart.push when we are using State. State cannot be mutated in place        
+            return [...list, book];         
         case listActions.removeFromList:
             let newList = list.slice()
             for (let listBook of newList){
