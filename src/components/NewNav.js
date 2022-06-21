@@ -113,7 +113,7 @@ export default function PersistentDrawerLeft({children}) {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ backgroundColor: "#007a7a", mr: 2, ...(open && { display: 'none' }) }}
+            sx={{ backgroundColor: "#870808", mr: 2, ...(open && { display: 'none' }) }}
           >
             <MenuIcon />
           </IconButton>
@@ -127,7 +127,7 @@ export default function PersistentDrawerLeft({children}) {
             </Tooltip>
             
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{  backgroundColor: "#870808" , mt: '45px' }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
@@ -192,6 +192,7 @@ export default function PersistentDrawerLeft({children}) {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
+            backgroundColor: "#870808"
           },
         }}
         variant="persistent"

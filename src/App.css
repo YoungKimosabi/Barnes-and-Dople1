@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: "#870808"
 }
 
 .App-logo {
@@ -30,6 +31,7 @@
   height: 100vh;
   display: flex;
   justify-content: center;
+  background-color: "#870808";
 }
 
 #menu{

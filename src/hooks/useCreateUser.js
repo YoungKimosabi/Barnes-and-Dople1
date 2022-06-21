@@ -11,18 +11,22 @@ export default function useCreateUser(user) {
     useEffect(
         ()=>{
             const source = CancelToken.source()
-            if (user){
-                const register = async(cancelToken)=>{
+            console.log('here')
+            if (user.first_name){
+                const register = async()=>{
                     const response = await postUser(user, source.token)
+                    console.log("response",response)
                     if (response){
                         console.log('User was created successfully');
                         navigate('/login')
                     }
                     setError(response.error);
                 }
+                register()
                 return ()=>{source.cancel()}                
             }
         },
         [user]
     )
+    return error
 }

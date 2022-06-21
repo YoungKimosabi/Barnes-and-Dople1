@@ -19,10 +19,10 @@ const FormSchema=Yup.object(
 
 export default function RegisterForm({ user }){
     const[newUser, setNewUser] = useState({})
-    const[setError] = useState('')
 
 
-    useCreateUser(newUser, setError)
+
+    const error=useCreateUser(newUser)
 
 
     const initialValues={

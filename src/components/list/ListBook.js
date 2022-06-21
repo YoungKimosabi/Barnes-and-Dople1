@@ -22,7 +22,7 @@ export default function ListBook(books) {
       <Grid item={true} sx={{m:1, pr:0, border: '.1px solid #C9B79C', borderRadius:1}}>
         <Grid item={true} sm={12} xs={12} md={12}>
         {books.map((book) => (
-          <Book sx={{display:"flex",  flexDirection:"row", alignItems:"center"}}>
+          <Book sx={{display:"flex",  flexDirection:"row", alignItems:"space-evenly"}}>
             <Avatar alt={book.title} variant="rounded" src={book.img} sx={{height:'100%', width:'100%', marginLeft:'15%'}}/>
           <Grid item={true} sm={12} xs={12} md={12} sx={{ml:2}}>
                 <Typography variant="subtitle1"> 

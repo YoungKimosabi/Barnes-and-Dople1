@@ -19,8 +19,8 @@ export default function AllBooks(){
   if (error){
     return (
       <Box>
-        <Typography variant="h5" style={{display:'flex', alignItems:'center', justifyContent:'center'}}>
-            Welcome to The Nook!
+        <Typography variant="h5" style={{display:'flex', alignItems:'center', justifyContent:'space-between', padding: 20}}>
+            Welcome to Barnes and Dople!
         </Typography>
         <Error>{error}</Error>
       </Box>
@@ -29,7 +29,7 @@ export default function AllBooks(){
   if(!books){
     return(
       <Box sx={{display:"flex"}}>
-          <CircularProgress sx={{alignSelf:"center", justifySelf:"center"}}/>
+          <CircularProgress sx={{alignSelf:"center", justifySelf:"space-evenly"}}/>
       </Box>
     )
   }
@@ -37,12 +37,12 @@ export default function AllBooks(){
   return (
     <>
     <Box>
-      <Typography variant="h5" style={{display:'flex', alignItems:'center', justifyContent:'center'}}>
-          Welcome to The Nook!
+      <Typography variant="h5" style={{display:'flex', alignItems:'center', justifyContent:'space-evenly'}}>
+        Welcome to Barnes and Dople!
       </Typography>
     </Box>
     <Box display='flex'>
-    <ImageList sx={{pt:2, margin: "auto", width: 600, height: "auto"}} id="imageGrid">
+    <ImageList sx={{pt:2, margin: "auto", width: 600, height: "auto", }} gap={100} id="imageGrid">
       <ImageListItem key="Subheader" cols={2}></ImageListItem>
       {books.map((book) => (
         //key goes on the outermost element

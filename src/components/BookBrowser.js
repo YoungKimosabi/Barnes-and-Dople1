@@ -32,7 +32,7 @@ export default function BookBrowser({subject}) {
     if(!books){
         return(
             <Box sx={{display:"flex"}}>
-                <CircularProgress sx={{alignItems:"center", justifyContent:"center"}}/>
+                <CircularProgress sx={{alignItems:"space-between", justifyContent:"space-between"}}/>
 
             </Box>
         )
